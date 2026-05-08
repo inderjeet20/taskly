@@ -91,26 +91,9 @@ class DashboardScreen extends GetView<TaskController> {
                       ],
                     ).animate().fadeIn(duration: 300.ms),
                     const SizedBox(height: 24),
-                    Row(
-                          children: [
-                            Expanded(
-                              child: StatsCard(
-                                value: controller.totalTasks.toString(),
-                                label: 'Total Tasks',
-                                accent: AppColors.primary,
-                                subtitle: 'Keep building momentum',
-                              ),
-                            ),
-                            const SizedBox(width: 14),
-                            Expanded(
-                              child: StatsCard(
-                                value: controller.completedTasks.toString(),
-                                label: 'Completed',
-                                accent: AppColors.success,
-                                subtitle: 'Great progress today',
-                              ),
-                            ),
-                          ],
+                    _OverviewCard(
+                          completed: controller.completedTasks,
+                          total: controller.totalTasks,
                         )
                         .animate()
                         .fadeIn(delay: 80.ms)
@@ -241,6 +224,96 @@ class _DashboardTaskCard extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _OverviewCard extends StatelessWidget {
+  const _OverviewCard({required this.completed, required this.total});
+
+  final int completed;
+  final int total;
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = total > 0 ? completed / total : 0.0;
+    final percentage = (progress * 100).toInt();
+
+    return Container(
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.shadow,
+            blurRadius: 24,
+            offset: Offset(0, 12),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Daily Progress',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  total > 0
+                      ? '$completed of $total tasks finished'
+                      : 'No tasks scheduled today',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: LinearProgressIndicator(
+                    value: progress,
+                    backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+                    color: AppColors.primary,
+                    minHeight: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 24),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                width: 64,
+                height: 64,
+                child: CircularProgressIndicator(
+                  value: progress,
+                  strokeWidth: 7,
+                  backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+                  color: AppColors.primary,
+                  strokeCap: StrokeCap.round,
+                ),
+              ),
+              Text(
+                '$percentage%',
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.primary,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

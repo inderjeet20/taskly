@@ -35,7 +35,7 @@ class HomeScreen extends GetView<NavigationController> {
             elevation: 10,
             backgroundColor: AppColors.primary,
             onPressed: () => Get.toNamed(AppRoutes.addEditTask),
-            child: const Icon(Icons.add_rounded, size: 28),
+            child: const Icon(Icons.add_rounded, size: 28, color: Colors.white),
           ),
         ),
         bottomNavigationBar: SafeArea(

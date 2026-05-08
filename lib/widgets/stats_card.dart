@@ -49,9 +49,19 @@ class StatsCard extends StatelessWidget {
             ).textTheme.headlineMedium?.copyWith(color: accent),
           ),
           const SizedBox(height: 6),
-          Text(label, style: Theme.of(context).textTheme.titleSmall),
+          Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
           const SizedBox(height: 8),
-          Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
+          Text(
+            subtitle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ],
       ),
     );

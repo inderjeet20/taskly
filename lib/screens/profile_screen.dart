@@ -62,6 +62,8 @@ class ProfileScreen extends GetView<AuthController> {
                     const SizedBox(height: 16),
                     Text(
                       controller.displayName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: Theme.of(
                         context,
                       ).textTheme.headlineSmall?.copyWith(color: Colors.white),
@@ -69,6 +71,8 @@ class ProfileScreen extends GetView<AuthController> {
                     const SizedBox(height: 6),
                     Text(
                       controller.emailAddress,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white.withValues(alpha: 0.8),
                       ),

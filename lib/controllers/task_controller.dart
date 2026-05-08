@@ -127,12 +127,10 @@ class TaskController extends GetxController {
 
       if (existingTask == null) {
         final createdTask = await _taskService.createTask(user.uid, task);
-        AppSnackbar.success('Task added to your planner.');
         return createdTask;
       }
 
       await _taskService.updateTask(user.uid, task);
-      AppSnackbar.success('Task updated successfully.');
       return task;
     } catch (_) {
       AppSnackbar.error('We could not save your task right now.');
@@ -165,8 +163,24 @@ class TaskController extends GetxController {
     }
 
     try {
-      await _taskService.deleteTask(user.uid, task.id!);
-      AppSnackbar.success('Task removed.');
+      final taskId = task.id!;
+      final userId = user.uid;
+      
+      // Delete from service
+      await _taskService.deleteTask(userId, taskId);
+      
+      // Show undo snackbar
+      AppSnackbar.undo(
+        message: 'Task "${task.title}" deleted',
+        onUndo: () async {
+          try {
+            // Re-create the task
+            await _taskService.createTask(userId, task);
+          } catch (_) {
+            AppSnackbar.error('Could not restore the task.');
+          }
+        },
+      );
     } catch (_) {
       AppSnackbar.error('We could not delete that task.');
     }

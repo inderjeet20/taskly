@@ -7,6 +7,7 @@ import 'package:taskly/models/task_model.dart';
 import 'package:taskly/utils/app_constants.dart';
 import 'package:taskly/utils/app_formatters.dart';
 import 'package:taskly/utils/app_routes.dart';
+import 'package:taskly/utils/app_snackbar.dart';
 import 'package:taskly/utils/app_validators.dart';
 import 'package:taskly/widgets/custom_button.dart';
 import 'package:taskly/widgets/custom_text_field.dart';
@@ -104,6 +105,29 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
       return;
     }
 
+    if (_isEditing) {
+      final confirm = await Get.dialog<bool>(
+        AlertDialog(
+          title: const Text('Update Task?'),
+          content: const Text('Are you sure you want to save these changes?'),
+          actions: [
+            TextButton(
+              onPressed: () => Get.back(result: false),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Get.back(result: true),
+              child: const Text('Update'),
+            ),
+          ],
+        ),
+      );
+
+      if (confirm != true) {
+        return;
+      }
+    }
+
     final savedTask = await _taskController.saveTask(
       existingTask: widget.task,
       title: _titleController.text,
@@ -117,6 +141,7 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
     }
 
     if (_isEditing) {
+      AppSnackbar.success('Task updated successfully');
       Get.back();
       return;
     }

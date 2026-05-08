@@ -7,9 +7,9 @@ class QuoteModel {
   factory QuoteModel.fromJson(Map<String, dynamic> json) {
     return QuoteModel(
       content:
-          json['content'] as String? ??
+          (json['q'] ?? json['content']) as String? ??
           'The secret of getting ahead is getting started.',
-      author: json['author'] as String? ?? 'Mark Twain',
+      author: (json['a'] ?? json['author']) as String? ?? 'Mark Twain',
     );
   }
 }

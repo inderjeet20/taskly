@@ -4,7 +4,7 @@ Taskly is a polished Flutter task manager built for internship evaluation with:
 
 - Firebase Authentication for signup, login, logout, and persistent auth state
 - Cloud Firestore CRUD for personal task management
-- Quotable REST API integration using `http`
+- ZenQuotes REST API integration using `http`
 - GetX state management and routing
 - Reusable premium UI widgets with an iOS-inspired aesthetic
 - Responsive layouts, animations, loading states, and error handling
@@ -26,7 +26,7 @@ lib/
 
 - Splash, Login, Signup, Dashboard, Add/Edit Task, Task Detail, All Tasks, Calendar, and Profile screens
 - Firestore-backed add, edit, delete, and complete task flows
-- Motivational quote card powered by `https://api.quotable.io/random`
+- Motivational quote card powered by `https://zenquotes.io/api/random`
 - Clean architecture with separated controllers, services, and UI widgets
 - Smooth Cupertino-style page transitions and subtle micro-interactions
 

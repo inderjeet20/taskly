@@ -13,9 +13,10 @@ class ApiService {
           .timeout(const Duration(seconds: 8));
 
       if (response.statusCode == 200) {
-        return QuoteModel.fromJson(
-          jsonDecode(response.body) as Map<String, dynamic>,
-        );
+        final List<dynamic> data = jsonDecode(response.body) as List<dynamic>;
+        if (data.isNotEmpty) {
+          return QuoteModel.fromJson(data[0] as Map<String, dynamic>);
+        }
       }
 
       return AppConstants.fallbackQuote;

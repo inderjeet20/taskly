@@ -4,7 +4,7 @@ class AppConstants {
   static const String appName = 'Taskly';
   static const String usersCollection = 'users';
   static const String tasksCollection = 'tasks';
-  static const String quoteUrl = 'https://api.quotable.io/random';
+  static const String quoteUrl = 'https://zenquotes.io/api/random';
 
   static const List<String> taskCategories = [
     'Design',
