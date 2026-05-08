@@ -24,6 +24,19 @@ Taskly is a polished Flutter task manager built for internship evaluation with:
   <img src="https://github.com/user-attachments/assets/2dbfd26d-26df-4393-86b3-788a67eeee4c" width="220"/>
   <img src="https://github.com/user-attachments/assets/95afaeee-d0ee-4c22-9471-2d1bce0d64a0" width="220"/>
 </p>
+### Video
+
+
+https://github.com/user-attachments/assets/de75c465-8cc5-4a92-b534-08768d9b931c
+
+
+### Firestore 
+<img width="960" height="481" alt="{A60C638E-3B76-436A-9303-4FBF47CBF5AA}" src="https://github.com/user-attachments/assets/dc63ca33-c671-417d-b056-a725b416e2eb" />
+
+### Firebase auth
+<img width="960" height="476" alt="{DB7706F1-C87A-4D2C-B8D5-D7079FF0ACC1}" src="https://github.com/user-attachments/assets/9af2f1d9-8c06-4be9-a1e8-061b7827f4c9" />
+
+
 
 ---
 
